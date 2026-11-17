@@ -56,7 +56,7 @@ def synthetic(folder):
 
 
 def run(script, *args, env=None):
-    result = subprocess.run([sys.executable, str(SCRIPTS / script), *map(str, args)],
+    result = subprocess.run([sys.executable, '-I', str(SCRIPTS / script), *map(str, args)],
                             capture_output=True, text=True, env={**os.environ, **(env or {})})
     return result.returncode, result.stdout + result.stderr
 

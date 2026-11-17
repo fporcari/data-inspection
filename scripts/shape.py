@@ -33,6 +33,8 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))  # python3 -I drops the script's directory
+
 from common import (classify, detect, is_header, is_map, load_analyzer, local_name,
                     sniff_delimiter, use_skill_venv, xml_bytes)
 

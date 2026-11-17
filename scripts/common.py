@@ -51,7 +51,8 @@ def is_map(value):
 def use_skill_venv(script):
     if AnalyzerEngine is None and VENV_PYTHON.exists() and not os.environ.get(REEXEC_FLAG):
         os.environ[REEXEC_FLAG] = '1'
-        os.execv(VENV_PYTHON, [str(VENV_PYTHON), script, *sys.argv[1:]])
+        os.execv(VENV_PYTHON, [str(VENV_PYTHON), *(['-I'] if sys.flags.isolated else []),
+                                script, *sys.argv[1:]])
 
 
 def load_analyzer():

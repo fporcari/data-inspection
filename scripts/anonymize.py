@@ -43,6 +43,8 @@ import secrets
 import sys
 import xml.etree.ElementTree as ET
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))  # python3 -I drops the script's directory
+
 from common import (CF, IBAN, EMAIL_LIKE, cf_check, detect, iban_valid, is_header, is_map,
                     load_analyzer, local_name, sniff_delimiter, use_skill_venv,
                     vat_check, xml_bytes)

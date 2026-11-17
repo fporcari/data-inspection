@@ -15,7 +15,7 @@ one, otherwise `$TMPDIR/data-inspection/`.
 
 ## 1. Shape, never values
 
-- **File**: `python3 <skill-dir>/scripts/shape.py <file>` prints element paths,
+- **File**: `python3 -I <skill-dir>/scripts/shape.py <file>` prints element paths,
   attribute names, headers, keys, value classes, length ranges and counts. With
   Presidio (see below) each field also carries the personal data found in a sample of
   its values — `cod_fisc [IT_FISCAL_CODE 50/50]`, `note [PERSON 31/50]` — types and
@@ -29,6 +29,10 @@ one, otherwise `$TMPDIR/data-inspection/`.
   and apply the rest of this skill to whatever comes next.
 
 In this step never open, `cat`, `head` or `grep` the source itself.
+
+The shape contradicts what the user said the source holds (no email field in a list of
+addresses, an invoice where a register was announced) → stop, show the shape and ask
+whether it is the right source. Do not classify fields nor go to step 2 on it.
 
 ## 2. Ask, in one round
 
@@ -77,7 +81,7 @@ Anonymising: write the classification agreed in step 2 as a map, field paths exa
 `shape.py` printed them, into the work folder, then
 
 ```bash
-python3 <skill-dir>/scripts/anonymize.py --map <map.json> --out-dir <work-folder>/anon <file> [<file> …]
+python3 -I <skill-dir>/scripts/anonymize.py --map <map.json> --out-dir <work-folder>/anon <file> [<file> …]
 ```
 
 | Action | Effect |
